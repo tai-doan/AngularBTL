@@ -1,0 +1,8 @@
+div.banner-top {
+    background-image: url(https://www.elegantthemes.com/layouts/wp-content/uploads/2017/12/writer-06.jpg);
+    height: 500px;
+}
+
+div.banner-top .content {
+    vertical-align: middle;
+}
