@@ -5,4 +5,9 @@ div.banner-top {
 
 div.banner-top .content {
     vertical-align: middle;
+    margin-top: 5%;
+}
+
+.banner-top .content h1 {
+    color: #f88528;
 }

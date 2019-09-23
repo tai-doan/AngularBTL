@@ -1,0 +1,18 @@
+.card-body.mx-auto {
+    background: linear-gradient(145deg, #673AB7, #9C27B0);
+    border-radius: 5px;
+    width: -webkit-fill-available;
+}
+
+.card {
+    width: 35%;
+}
+
+.signup {
+    margin-top: 30px;
+}
+
+.signup a {
+    text-decoration: none;
+    color: #ffc107;
+}

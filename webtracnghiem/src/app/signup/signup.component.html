@@ -1,65 +1,69 @@
-<div class="card bg-light">
-    <article class="card-body mx-auto" style="width: 30%;">
-        <h4 class="card-title mt-3 text-center">Create Account</h4>
-        <p class="text-center">Get started with your free account</p>
-        <form>
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-user-circle"></i> </span>
-                </div>
-                <input name="fullname" class="form-control" placeholder="Full name" type="text">
-            </div>
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
-                </div>
-                <input name="username" class="form-control" placeholder="Username" type="text">
-            </div>
-            <!-- form-group// -->
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
-                </div>
-                <input name="email" class="form-control" placeholder="Email address" type="email">
-            </div>
-            <!-- form-group// -->
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fas fa-venus-mars"></i> </span>
-                </div>
-                <select class="form-control" name="gender">
+<div class="container">
+    <div class="row signup">
+        <div class="card bg-light mx-auto">
+            <div class="card-body mx-auto text-white">
+                <h4 class="card-title mt-3 text-center">Create Account</h4>
+                <p class="text-center">Get started with your free account</p>
+                <form class="mt-5">
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user-circle"></i> </span>
+                        </div>
+                        <input name="fullname" class="form-control" placeholder="Full name" type="text">
+                    </div>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="username" class="form-control" placeholder="Username" type="text">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input name="email" class="form-control" placeholder="Email address" type="email">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fas fa-venus-mars"></i> </span>
+                        </div>
+                        <select class="form-control" name="gender">
                     <option selected=""> Gender</option>
                     <option>Male</option>
                     <option>Female</option>
                 </select>
+                    </div>
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fas fa-birthday-cake"></i> </span>
+                        </div>
+                        <input name="birthday" class="form-control" type="date" value="2000-01-01" id="example-date-input">
+                    </div>
+                    <!-- form-group end.// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input name="password" class="form-control" placeholder="Create password" type="password">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input name="repassword" class="form-control" placeholder="Repeat password" type="password">
+                    </div>
+                    <!-- form-group// -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+                    </div>
+                    <!-- form-group// -->
+                    <p class="text-center">Have an account? <a [routerLink]="['/signin']">Log In</a> </p>
+                </form>
             </div>
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fas fa-birthday-cake"></i> </span>
-                </div>
-                <input name="birthday" class="form-control" type="date" value="2000-01-01" id="example-date-input">
-            </div>
-            <!-- form-group end.// -->
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                </div>
-                <input name="password" class="form-control" placeholder="Create password" type="password">
-            </div>
-            <!-- form-group// -->
-            <div class="form-group input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                </div>
-                <input name="repassword" class="form-control" placeholder="Repeat password" type="password">
-            </div>
-            <!-- form-group// -->
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
-            </div>
-            <!-- form-group// -->
-            <p class="text-center">Have an account? <a [routerLink]="['/signin']">Log In</a> </p>
-        </form>
-    </article>
+        </div>
+        <!-- card.// -->
+    </div>
 </div>
-<!-- card.// -->
