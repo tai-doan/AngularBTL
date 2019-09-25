@@ -15,7 +15,7 @@ export class SigninComponent implements OnInit {
   constructor(private Aut: AuthService) { }
 
   ngOnInit() {
-    // get items
+    // get all students
     this.Aut.getStudents().subscribe(stds => {
       this.students=stds;
     });
@@ -23,13 +23,9 @@ export class SigninComponent implements OnInit {
   login(email, pw) {
     for(var i=0; i<this.students.length; i++){
       if(email==this.students[i].email && pw==this.students[i].password){
-        this.userlogin=this.students[i];
-        this.Aut.userlogin=this.userlogin;
+        this.Aut.userlogin=this.students[i];
       }
     }
-    console.log(this.Aut.userlogin);
+    //console.log(this.Aut.userlogin);
   }
-  // login(email, pw){
-  //   this.Aut.login(email, pw);
-  // }
 }

@@ -1,0 +1,12 @@
+.text-count {
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+    background-color: #E0F0EA;
+    margin: 0px 10px;
+    flex: 0 0 31%;
+}
+
+.container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

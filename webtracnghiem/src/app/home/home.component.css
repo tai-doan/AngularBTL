@@ -1,13 +1,4 @@
-div.banner-top {
-    background-image: url(https://www.elegantthemes.com/layouts/wp-content/uploads/2017/12/writer-06.jpg);
-    height: 500px;
-}
-
-div.banner-top .content {
-    vertical-align: middle;
-    margin-top: 5%;
-}
-
-.banner-top .content h1 {
-    color: #f88528;
+.container-fluid {
+    margin: 0;
+    padding: 0;
 }

@@ -1,1 +1,41 @@
-<p>feedback works!</p>
+<div class="container">
+    <div class="row feedback-page">
+        <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+            <h1>Feedback Page</h1>
+            <h5>We value your comments and suggestions. Every submission is reviewed by a person and, if you provide your email address, responded to promptly*.</h5>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card mx-auto">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Name</label>
+                            <input type="text" class="form-control" id="feedback_name" placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Email address</label>
+                            <input type="email" class="form-control" id="feedback_email" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="feedback_select">Select</label>
+                            <select class="form-control" id="feedback_select">
+                            <option>Feedback for us</option>
+                            <option>Reporting a problem</option>
+                            <option>Helps us developing site</option>
+                        </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Page URL related to your feedback</label>
+                            <input type="text" class="form-control" id="feedback_url" placeholder="URL related">
+                        </div>
+                        <div class="form-group">
+                            <label for="feedback_text">Feedback</label>
+                            <textarea class="form-control" id="feedback_text" rows="3" placeholder="Write somethings"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send feedback</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -22,5 +22,16 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <button class="btn btn-primary" (click)="updateStudent(student)">Update</button>
+        </div>
     </div>
 </div>
+<!-- <div *ngIf="students?.length>0; else nodata">
+    <ul *ngFor="let item of students">
+        <li>{{item.id}}</li>
+    </ul>
+</div>
+<ng-template #nodata>
+    <h2>No data</h2>
+</ng-template> -->
