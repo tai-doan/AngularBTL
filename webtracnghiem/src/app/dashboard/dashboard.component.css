@@ -1,3 +1,17 @@
 .container .row {
-    margin: 20px 0;
+    margin: 30px 0;
+}
+
+i.fas.fa-pencil-alt {
+    color: #ff7200;
+}
+
+.form-row .col {
+    margin: 5px;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #FF7200;
+    border-color: #FF7200;
 }

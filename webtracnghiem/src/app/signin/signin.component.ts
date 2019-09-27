@@ -9,7 +9,6 @@ import { Students } from '../services/students';
 })
 export class SigninComponent implements OnInit {
   students: Students[];
-  userlogin: any;
   email: string;
   pw: string;
   constructor(private Aut: AuthService) { }
@@ -20,9 +19,9 @@ export class SigninComponent implements OnInit {
       this.students=stds;
     });
   }
-  login(email, pw) {
+  login() {
     for(var i=0; i<this.students.length; i++){
-      if(email==this.students[i].email && pw==this.students[i].password){
+      if(this.email==this.students[i].email && this.pw==this.students[i].password){
         this.Aut.userlogin=this.students[i];
       }
     }

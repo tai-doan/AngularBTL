@@ -27,19 +27,11 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav navbar-account">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					    Tài khoản
-				    </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" [routerLink]="['/signup']">Đăng kí</a>
-                            <a class="dropdown-item" [routerLink]="['/signin']">Đăng nhập</a>
-                            <a class="dropdown-item" [routerLink]="['/resetpassword']">Quên mật khẩu</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Đăng xuất</a>
-                            <a class="dropdown-item" href="#">Đổi mật khẩu</a>
-                            <a class="dropdown-item" href="#">Cập nhật tài khoản</a>
-                        </div>
+                    <li class="nav-item">
+                        <button [routerLink]="['/signin']" class="btn btn-danger">Sign-in</button>
+                    </li>
+                    <li class="nav-item">
+                        <button [routerLink]="['/signup']" class="btn btn-danger">Sign-up</button>
                     </li>
                 </ul>
             </div>
