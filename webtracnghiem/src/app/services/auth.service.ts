@@ -21,6 +21,7 @@ export class AuthService {
     this.alluser = this.alluserRef.valueChanges();
     this.alluserRef.valueChanges().subscribe(data => {
       this.user= data;
+      // console.log(data);
     });
   }
   ResetPassword(email){
@@ -30,9 +31,10 @@ export class AuthService {
       }
     }
   }
-  // UpdateInfo(key, info){
-  //   this.alluserRef.update(key, info);
-  // }
+  UpdateInfo(key, info){
+    info= Object.assign(info);
+    this.alluserRef.update(key, info);
+  }
   Signup(email, password, fullname, username, birthday, gender, marks, schoolfee){
     this.alluserRef.push({
       "email" : email,
@@ -46,55 +48,7 @@ export class AuthService {
     });
     this.router.navigate(['/signin']);
   }
-  Login(email, password){
-    for(var i=0; i<this.user.length; i++){
-      if(email == this.user[i].email && password == this.user[i].password){
-        this.userlogin= this.user[i];
-        console.log("Login success");
-        this.router.navigate(['/dashboard']);
-        return;
-      }
-      else{
-        console.log("Login failed");
-        this.router.navigate(['/signup']);
-      }
-    }
-  }
   Logout(){
     this.userlogin=null;
   }
-
-  //-------------------------------------------------------------------------------------------/
-  // studentsCollection: AngularFirestoreCollection<Students>;
-  // students: Observable <Students[]>;
-  // studentsDoc: AngularFirestoreDocument<Students>;
-  // userlogin: any;
-  // constructor(public afs: AngularFirestore) {
-  //   // get data from Student collection
-  //   // this.students=afs.collection('Students').valueChanges();
-  //   this.students=this.afs.collection('Students').snapshotChanges().pipe(
-  //     map(actions => actions.map(a => {
-  //       const data = a.payload.doc.data() as Students;
-  //       data.id = a.payload.doc.id;
-  //       return data;
-  //     }))
-  //   );
-  // }
-  // // function get Students
-  // getStudents(){
-  //   return this.students;
-  // }
-  // // get user login
-  // getUser(){
-  //   return this.userlogin;
-  // }
-  // // logout
-  // logout(){
-  //   this.userlogin=[];
-  //   return this.userlogin;
-  // }
-  // updateStudent(student: Students){
-  //   this.studentsDoc=this.afs.doc(`Students/${student.id}`);
-  //   this.studentsDoc.update(student);
-  // }
 }

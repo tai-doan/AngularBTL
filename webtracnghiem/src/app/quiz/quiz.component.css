@@ -35,3 +35,7 @@ h5.card-title.text-center {
 .card.quizzes {
     width: 100%;
 }
+
+.card.info-students {
+    margin: 25px 0;
+}

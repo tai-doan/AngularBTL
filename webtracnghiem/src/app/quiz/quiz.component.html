@@ -18,6 +18,18 @@
     </ng-template>
     <ng-template #StartQuiz>
         <div class="row quiz-page">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="card info-students">
+                    <div class="card-header">
+                        <h4>Welcome to {{userlogin.fullname}}</h4>
+                    </div>
+                    <div class="card-body">
+                        <h6>Name: {{userlogin.fullname}}</h6>
+                        <h6>Birthday: {{userlogin.birthday}}</h6>
+                        <h6>Subjects: Lập trình web</h6>
+                    </div>
+                </div>
+            </div>
             <button *ngIf="hiddenStartquiz" class="btn btn-danger btn-block" (click)="startQuiz()">Start Quizs</button>
             <div *ngIf="!hiddenStartquiz" class="card quizzes">
                 <div class="card-header">
@@ -37,12 +49,12 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-12 text-left">
                             <p>
-                                Marks: <span id="mark">{{marks}}</span> / <span id="total-mark">{{count}}</span>
+                                Marks: {{marks}}
                             </p>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-12 text-right">
                             <p>
-                                Question: {{i+1}}
+                                Question: <span id="mark">{{i+1}}</span> / <span id="total-mark">{{count}}</span>
                             </p>
                         </div>
                     </div>
@@ -51,79 +63,14 @@
             </div>
         </div>
     </ng-template>
-</div>
-<!-- <div class="container">
-    <div class="row quiz-page">
+    <div *ngIf="result" class="row">
         <div class="col-lg-12 col-md-12 col-sm-12">
-            <div class="card info-students">
-                <div class="card-header">
-                    <h4>Welcome to {{userlogin.fullname}}</h4>
-                </div>
-                <div class="card-body">
-                    <h6>Name: {{userlogin.fullname}}</h6>
-                    <h6>Birthday: {{userlogin.birthday}}</h6>
-                    <h6>Subjects: Lập trình web</h6>
-                </div>
-            </div>
             <div class="card quizzes">
-                <div class="card-header">
-                    <h4>Name of Subjects</h4>
+                <div class="card-body text-center">
+                    <h6>Điểm của bạn là {{marks}}</h6>
+                    <p>Bạn đã trả lời đúng {{marks}}/{{count}}</p>
                 </div>
-                <div class="card-body">
-                    <h6>1. Trong kĩ thuật chỉnh nâng cao có những kĩ thuật nào?
-                        <a href="#" class="badge badge-primary" id="time-down" style="float: right;">
-
-                        </a>
-                    </h6>
-                    <form>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                Đối xứng
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                            <label class="form-check-label" for="exampleRadios2">
-                                Bẻ văn bản
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-                            <label class="form-check-label" for="exampleRadios3">
-                                Khối văn bản
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4">
-                            <label class="form-check-label" for="exampleRadios4">
-                                Không đối xứng
-                            </label>
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-12 text-left">
-                            <p>
-                                Marks: <span id="mark">0</span> / <span id="total-mark">80</span>
-                            </p>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 text-right">
-                            <button class="btn btn-danger">
-                                Submit quiz
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-lg-12 col-md-6 text-center pagination-quiz">
-                <i class="far fa-hand-point-up" (click)="quiz-first()"></i>
-                <i class="far fa-hand-point-left" (click)="quiz-prev()"></i>
-                <i class="far fa-hand-point-right" (click)="quiz-next()"></i>
-                <i class="far fa-hand-point-down" (click)="quiz-end()"></i>
             </div>
         </div>
     </div>
-</div> -->
+</div>

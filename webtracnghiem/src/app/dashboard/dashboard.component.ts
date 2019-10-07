@@ -1,7 +1,6 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { AuthService } from './../services/auth.service';
-import { Students } from '../services/students';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,19 +8,24 @@ import { Students } from '../services/students';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  userlogin: Students[];
-  userinfo: Students[];
-  students: Students[];
+  userlogin: any;
   edit= false;
   constructor(
     public auth: AuthService,
-    public router: Router,
-    public ngZone: NgZone
-  ) { }
+    public router: Router
+  ) {
+    if(this.auth.userlogin == null){
+      this.router.navigate(['/signin']);
+    }
+  }
 
   ngOnInit() {
     this.userlogin=this.auth.userlogin;
 
+  }
+  updateStudent(key){
+    this.auth.UpdateInfo(key,this.userlogin);
+    this.editstd();
   }
   editstd(){
     this.edit=!this.edit;
@@ -30,9 +34,4 @@ export class DashboardComponent implements OnInit {
     this.auth.Logout();
     this.router.navigate(['signin']);
   }
-  // updateStudent(key){
-  //   console.log(key);
-  //   const newinfo=Object.assign(this.userlogin);
-  //   this.auth.UpdateInfo(key, newinfo);
-  // }
 }

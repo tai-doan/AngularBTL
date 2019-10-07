@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from './../services/item.service';
+import { AuthService } from './../services/auth.service';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -19,15 +21,21 @@ export class QuizComponent implements OnInit {
   AnswerId; // Gán id câu đúng
   marks= 0; // Gán điểm
   count; // Đếm tất cả câu hỏi trong subject
+  result= false;
   hiddenStartquiz= true; // Ẩn hiện nút Start Quiz và Form trả lời
+  userlogin: any;
 
-
-  constructor(private db: AngularFireDatabase, public itemService: ItemService) {
-	this.itemsRef = this.db.list('Subjects');
-    this.items = this.itemsRef.valueChanges();
-    this.itemsRef.valueChanges().subscribe(data => {
-      this.subject= data; // Trả về mảng chứa tất cả các subject (Id, Name, Logo)
-	});
+  constructor(private router: Router ,private db: AngularFireDatabase, public itemService: ItemService, public auth: AuthService) {
+	if(this.auth.userlogin != null){
+		this.itemsRef = this.db.list('Subjects');
+		this.items = this.itemsRef.valueChanges();
+		this.itemsRef.valueChanges().subscribe(data => {
+		  this.subject= data; // Trả về mảng chứa tất cả các subject (Id, Name, Logo)
+		});
+		this.userlogin= this.auth.userlogin;
+	}else{
+		this.router.navigate(['/signin']);
+	}
   }
   getID(Id){
 	this.itemService.nameofsubject=Id; // Get lấy ID của subject đã chọn
@@ -46,10 +54,11 @@ export class QuizComponent implements OnInit {
 		if(id== this.AnswerId){
 			this.marks= this.marks + this.quizs[this.i].Marks; // Cộng điểm
 		}
-		this.i++; // Tăng câu hỏi lên
+		++this.i; // Tăng câu hỏi lên
 		this.quizload(); // Gọi hàm
 		id=null; // Gán id câu trả lời về rỗng
 	}
+	
   }
   quizload(){
 	this.question= this.quizs[this.i].Answers; // Trả về mảng chứa tất cả các câu trả lời của câu hỏi
@@ -57,7 +66,9 @@ export class QuizComponent implements OnInit {
 	this.AnswerId= this.quizs[this.i].AnswerId; // Get id câu trả lời đúng
   }
   ngOnInit() {
-	
+	if(this.i == this.count+1){
+		this.result= true;
+	}
     // set time for take quiz
 	// this.timefortake();
   }
