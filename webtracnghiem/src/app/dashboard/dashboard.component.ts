@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { Router } from '@angular/router'
 import { AuthService } from './../services/auth.service';
 import { Students } from '../services/students';
 
@@ -12,23 +13,26 @@ export class DashboardComponent implements OnInit {
   userinfo: Students[];
   students: Students[];
   edit= false;
-  constructor(private Aut: AuthService) { }
+  constructor(
+    public auth: AuthService,
+    public router: Router,
+    public ngZone: NgZone
+  ) { }
 
   ngOnInit() {
-    // gán mảng chứa user đã login vào userlogin
-    this.userlogin=this.Aut.getUser();
-    
-    // get all students from firebase
-    this.Aut.getStudents().subscribe(stds => {
-      this.students=stds;
-      //console.log("std: ",stds);
-    });
+    this.userlogin=this.auth.userlogin;
 
   }
   editstd(){
     this.edit=!this.edit;
   }
-  updateStudent(userlogin){
-    // this.Aut.updateStudent(userlogin);
+  logout(){
+    this.auth.Logout();
+    this.router.navigate(['signin']);
   }
+  // updateStudent(key){
+  //   console.log(key);
+  //   const newinfo=Object.assign(this.userlogin);
+  //   this.auth.UpdateInfo(key, newinfo);
+  // }
 }

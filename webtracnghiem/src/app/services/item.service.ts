@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Items } from './item';
 import { Observable } from 'rxjs';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ItemService {
-  itemsCollection: AngularFirestoreCollection<Items>;
-  private itemDoc: AngularFirestoreDocument<Items>;
-  items: Observable<Items[]>;
-  constructor(public afs: AngularFirestore) {
-    // get data from Subjects collection
-    this.items=afs.collection('Quizs').valueChanges();
+
+  quizRef: AngularFireObject<any>;
+  quiz: Observable<any[]>;
+
+  public quizs: any;
+  nameofsubject=null;
+  constructor( private db: AngularFireDatabase ){
+
+  }
+  GetQuiz(){
+    this.quizRef = this.db.object(`Quizs/${this.nameofsubject}`);
+      this.quiz = this.quizRef.valueChanges();
+      this.quizRef.valueChanges().subscribe(data => {
+        this.quizs= data;
+        // console.log("service trong gan:",this.quizs);
+      });
+      // console.log("service ngoai:",this.quizs);
   }
 
-  // function get items
-  getItems(){
-    return this.items;
-  }
 }

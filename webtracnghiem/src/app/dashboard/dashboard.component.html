@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-right">
-                    <button class="btn btn-danger">
+                    <button class="btn btn-danger" (click)="logout()">
                         Logout
                     </button>
                 </div>
@@ -40,26 +40,26 @@
                             <form>
                                 <div class="form-row">
                                     <div class="col">
-                                        <input [(ngModel)]="this.userlogin.fullname" [ngModelOptions]="{standalone: true}" name="fullname" class="form-control" placeholder="Full name" type="text">
+                                        <input [(ngModel)]="userlogin.fullname" [ngModelOptions]="{standalone: true}" name="fullname" class="form-control" placeholder="Full name" type="text">
                                     </div>
                                     <div class="col">
-                                        <input [(ngModel)]="this.userlogin.username" [ngModelOptions]="{standalone: true}" name="username" class="form-control" placeholder="Username" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col">
-                                        <input [(ngModel)]="this.userlogin.email" [ngModelOptions]="{standalone: true}" name="email" class="form-control" placeholder="Email address" type="email">
-                                    </div>
-                                    <div class="col">
-                                        <input [(ngModel)]="this.userlogin.password" [ngModelOptions]="{standalone: true}" name="password" class="form-control" placeholder="Password" type="password">
+                                        <input [(ngModel)]="userlogin.username" [ngModelOptions]="{standalone: true}" name="username" class="form-control" placeholder="Username" type="text">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col">
-                                        <input [(ngModel)]="this.userlogin.birthday" [ngModelOptions]="{standalone: true}" name="birthday" class="form-control" type="date" value="2000-01-01" id="example-date-input">
+                                        <input [(ngModel)]="userlogin.email" [ngModelOptions]="{standalone: true}" name="email" class="form-control" placeholder="Email address" type="email">
                                     </div>
                                     <div class="col">
-                                        <select class="form-control" name="gender" [(ngModel)]="this.userlogin.gender" [ngModelOptions]="{standalone: true}">
+                                        <input [(ngModel)]="userlogin.password" [ngModelOptions]="{standalone: true}" name="password" class="form-control" placeholder="Password" type="password">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input [(ngModel)]="userlogin.birthday" [ngModelOptions]="{standalone: true}" name="birthday" class="form-control" type="date" value="2000-01-01" id="example-date-input">
+                                    </div>
+                                    <div class="col">
+                                        <select class="form-control" name="gender" [(ngModel)]="userlogin.gender" [ngModelOptions]="{standalone: true}">
                                             <option selected=""> Gender</option>
                                             <option value="true">Male</option>
                                             <option value="false">Female</option>
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="col">
-                                        <button type="submit" class="btn btn-primary btn-block" (click)="updateStudent()"> Update Account  </button>
+                                        <button type="submit" class="btn btn-primary btn-block" (click)="updateStudent(userlogin.username)"> Update Account  </button>
                                     </div>
                                 </div>
                             </form>

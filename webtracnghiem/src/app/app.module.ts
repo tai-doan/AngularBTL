@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { ItemService } from './services/item.service';
 import { AuthService } from './services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +44,7 @@ import { FooterComponent } from './footer/footer.component';
     FooterComponent
   ],
   imports: [
+    ReactiveFormsModule,
     FormsModule,
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase, 'webtracnghiem'),

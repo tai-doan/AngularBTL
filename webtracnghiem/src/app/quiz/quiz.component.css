@@ -19,3 +19,19 @@ i.far {
     background-color: #FF7200;
     border-color: #FF7200;
 }
+
+.card-subject {
+    margin: 5px 0;
+}
+
+.card-img-top.mx-auto {
+    width: 65%;
+}
+
+h5.card-title.text-center {
+    font-size: 1em;
+}
+
+.card.quizzes {
+    width: 100%;
+}

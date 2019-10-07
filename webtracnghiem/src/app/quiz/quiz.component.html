@@ -1,4 +1,58 @@
-<div class="container">
+<div class="container quizs-page">
+    <div *ngIf="this.itemService.nameofsubject==null; then ChoiceSubject else StartQuiz">
+    </div>
+    <ng-template #ChoiceSubject>
+        <div class="row quiz-page">
+            <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                <h3>Choose a quiz</h3>
+            </div>
+            <div *ngFor="let subject of subject" class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card card-subject" (click)="getID(subject.Id)">
+                    <img src="/assets/images/logos/{{subject.Logo}}" class="card-img-top mx-auto" alt="{{subject.Name}}">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{subject.Name}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template #StartQuiz>
+        <div class="row quiz-page">
+            <button *ngIf="hiddenStartquiz" class="btn btn-danger btn-block" (click)="startQuiz()">Start Quizs</button>
+            <div *ngIf="!hiddenStartquiz" class="card quizzes">
+                <div class="card-header">
+                    <h6>{{Text}}</h6>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div *ngFor="let question of question" class="form-check">
+                            <input class="form-check-input" type="radio" value="{{question.Id}}" (click)="choose(question.Id)">
+                            <label class="form-check-label" (click)="choose(question.Id)">
+                                {{question.Text}}
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 text-left">
+                            <p>
+                                Marks: <span id="mark">{{marks}}</span> / <span id="total-mark">{{count}}</span>
+                            </p>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 text-right">
+                            <p>
+                                Question: {{i+1}}
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>
+<!-- <div class="container">
     <div class="row quiz-page">
         <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="card info-students">
@@ -72,4 +126,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
