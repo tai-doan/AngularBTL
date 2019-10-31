@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +16,8 @@ export class AuthService {
     private db: AngularFireDatabase,
     private router: Router
   ){
+    // this.userlogin= JSON.parse(localStorage.getItem('userlogin'));
+    // console.log(this.userlogin);
     this.alluserRef = this.db.list('Students');
     this.alluser = this.alluserRef.valueChanges();
     this.alluserRef.valueChanges().subscribe(data => {
@@ -35,6 +36,9 @@ export class AuthService {
     info= Object.assign(info);
     this.alluserRef.update(key, info);
   }
+  UpdateMarks(key, mark){
+    this.alluserRef.update(key, mark);
+  }
   Signup(email, password, fullname, username, birthday, gender, marks, schoolfee){
     this.alluserRef.push({
       "email" : email,
@@ -49,6 +53,7 @@ export class AuthService {
     this.router.navigate(['/signin']);
   }
   Logout(){
-    this.userlogin=null;
+    localStorage.removeItem('userlogin');
+    // location.reload();
   }
 }

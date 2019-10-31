@@ -26,16 +26,38 @@ export class QuizComponent implements OnInit {
   userlogin: any;
 
   constructor(private router: Router ,private db: AngularFireDatabase, public itemService: ItemService, public auth: AuthService) {
-	if(this.auth.userlogin != null){
+	this.userlogin= JSON.parse(localStorage.getItem('userlogin'));
+	if(this.userlogin != null){
 		this.itemsRef = this.db.list('Subjects');
 		this.items = this.itemsRef.valueChanges();
 		this.itemsRef.valueChanges().subscribe(data => {
 		  this.subject= data; // Trả về mảng chứa tất cả các subject (Id, Name, Logo)
 		});
-		this.userlogin= this.auth.userlogin;
+		// this.userlogin= this.auth.userlogin;
 	}else{
 		this.router.navigate(['/signin']);
 	}
+  }
+  chonlai(){
+	this.itemService.nameofsubject=null;
+	this.i=0;
+	this.Text= null;
+	this.AnswerId= null;
+	this.marks= 0;
+	this.count= null;
+	this.hiddenStartquiz= true;
+	this.result= false;
+  }
+  luudiem(){
+	this.auth.UpdateMarks(this.userlogin.id, { marks: this.marks });
+	document.getElementById("noti").innerHTML = "Bạn đã lưu điểm thành công";
+	setTimeout(() => {
+		this.itemService.nameofsubject=null;	// Reset lại danh mục
+		this.result= false;	// Ẩn bảng result
+		this.hiddenStartquiz=true;	// Hiện nút Start Quiz
+		this.marks= 0;	// Reset lại điểm
+		this.i= 0;	// Reset lại câu hỏi thứ đầu tiên
+	}, 2000);
   }
   getID(Id){
 	this.itemService.nameofsubject=Id; // Get lấy ID của subject đã chọn
@@ -47,7 +69,7 @@ export class QuizComponent implements OnInit {
 	// console.log("quiz count:",this.count);
 	this.quizload(); // Gọi hàm quizLoad
 	this.hiddenStartquiz= false; // Ẩn button Start Quiz & show form
-	
+	this.timefortake(5, 30);
   }
   choose(id){
 	if(id!=null){
@@ -55,8 +77,12 @@ export class QuizComponent implements OnInit {
 			this.marks= this.marks + this.quizs[this.i].Marks; // Cộng điểm
 		}
 		++this.i; // Tăng câu hỏi lên
-		this.quizload(); // Gọi hàm
-		id=null; // Gán id câu trả lời về rỗng
+		if(this.i >= this.count){
+			this.result= true;
+		}else{
+			this.quizload(); // Gọi hàm
+			id=null; // Gán id câu trả lời về rỗng
+		}
 	}
 	
   }
@@ -66,17 +92,17 @@ export class QuizComponent implements OnInit {
 	this.AnswerId= this.quizs[this.i].AnswerId; // Get id câu trả lời đúng
   }
   ngOnInit() {
+	
 	if(this.i == this.count+1){
 		this.result= true;
 	}
     // set time for take quiz
 	// this.timefortake();
   }
-  timefortake(){
-	var sec=30;
-	var min=0;
+  timefortake(min, sec){
 	document.getElementById("time-down").innerHTML = min +" : " + sec ;
-	setInterval(function(){
+	clearInterval(set);
+	var set=setInterval(function(){
 	sec-=1;
 		if(min==0 && sec==0){
 			// next-quiz();

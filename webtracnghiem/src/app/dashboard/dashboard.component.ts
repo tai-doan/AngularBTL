@@ -14,14 +14,13 @@ export class DashboardComponent implements OnInit {
     public auth: AuthService,
     public router: Router
   ) {
-    if(this.auth.userlogin == null){
+    this.userlogin= JSON.parse(localStorage.getItem('userlogin'));
+    if(this.userlogin == null){
       this.router.navigate(['/signin']);
     }
   }
 
   ngOnInit() {
-    this.userlogin=this.auth.userlogin;
-
   }
   updateStudent(key){
     this.auth.UpdateInfo(key,this.userlogin);

@@ -5,45 +5,45 @@
                 <h4 class="card-title mt-3 text-center">Create Account</h4>
                 <p class="text-center">Get started with your free account</p>
                 <form class="mt-5">
-                    <div class="form-group input-group">
+                    <div [ngStyle]="{'border': fullnameRef.invalid &&  (fullnameRef.touched ) ? '2px solid red' : '2px solid white'}" class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user-circle"></i> </span>
                         </div>
-                        <input [(ngModel)]="fullname" name="fullname" class="form-control" placeholder="Full name" type="text">
+                        <input required #fullnameRef="ngModel" [(ngModel)]="fullname" name="fullname" class="form-control" placeholder="Full name" type="text">
                     </div>
-                    <div class="form-group input-group">
+                    <div [ngStyle]="{'border': usernameRef.invalid &&  (usernameRef.touched ) ? '2px solid red' : '2px solid white'}" class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                         </div>
-                        <input [(ngModel)]="username" name="username" class="form-control" placeholder="Username" type="text">
+                        <input required #usernameRef="ngModel" [(ngModel)]="username" name="username" class="form-control" placeholder="Username" type="text">
                     </div>
-                    <div class="form-group input-group">
+                    <div [ngStyle]="{'border': emailRef.invalid &&  (emailRef.touched ) ? '2px solid red' : '2px solid white'}" class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
                         </div>
-                        <input [(ngModel)]="email" name="email" class="form-control" placeholder="Email address" type="email">
+                        <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="email" name="email" type="email" class="form-control" placeholder="Email address" required #emailRef="ngModel">
                     </div>
-                    <div class="form-group input-group">
+                    <div [ngStyle]="{'border': genderRef.invalid &&  (genderRef.touched ) ? '2px solid red' : '2px solid white'}" class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fas fa-venus-mars"></i> </span>
                         </div>
-                        <select [(ngModel)]="gender" class="form-control" name="gender">
+                        <select required #genderRef="ngModel" [(ngModel)]="gender" class="form-control" name="gender">
                             <option selected=""> Gender</option>
                             <option value="true">Male</option>
                             <option value="false">Female</option>
                         </select>
                     </div>
-                    <div class="form-group input-group">
+                    <div [ngStyle]="{'border': birthdayRef.invalid &&  (birthdayRef.touched ) ? '2px solid red' : '2px solid white'}" class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fas fa-birthday-cake"></i> </span>
                         </div>
-                        <input [(ngModel)]="birthday" name="birthday" class="form-control" type="date" value="2000-01-01" id="example-date-input">
+                        <input required #birthdayRef="ngModel" [(ngModel)]="birthday" name="birthday" class="form-control" type="date" value="2000-01-01" id="example-date-input">
                     </div>
-                    <div class="form-group input-group">
+                    <div [ngStyle]="{'border': passwordRef.invalid &&  (passwordRef.touched ) ? '2px solid red' : '2px solid white' }" class="form-group input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                         </div>
-                        <input [(ngModel)]="password" name="password" class="form-control" placeholder="Create password" type="password">
+                        <input required #passwordRef="ngModel" [(ngModel)]="password" name="password" class="form-control" placeholder="Create password" type="password">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-block" (click)="Signup()"> Create Account  </button>

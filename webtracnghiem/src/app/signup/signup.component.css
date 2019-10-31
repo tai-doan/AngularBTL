@@ -8,6 +8,10 @@
     width: 35%;
 }
 
+.form-group.input-group {
+    border-radius: 5px;
+}
+
 .signup {
     margin-top: 30px;
     margin-bottom: 30px;

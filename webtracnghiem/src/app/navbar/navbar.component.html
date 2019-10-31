@@ -26,7 +26,7 @@
                         <a class="nav-link" [routerLink]="['/contact']">Contact</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav navbar-account">
+                <ul *ngIf="!hiddenbutton;else HiddenButton " class="navbar-nav navbar-account">
                     <li class="nav-item">
                         <button [routerLink]="['/signin']" class="btn btn-danger">Sign-in</button>
                     </li>
@@ -34,6 +34,13 @@
                         <button [routerLink]="['/signup']" class="btn btn-danger">Sign-up</button>
                     </li>
                 </ul>
+                <ng-template #HiddenButton>
+                    <ul class="navbar-nav navbar-account">
+                        <li class="nav-item">
+                            <button class="btn btn-danger">Chào {{userlogin.fullname}}</button>
+                        </li>
+                    </ul>
+                </ng-template>
             </div>
         </div>
     </div>

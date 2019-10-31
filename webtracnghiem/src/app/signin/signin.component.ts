@@ -15,6 +15,7 @@ export class SigninComponent implements OnInit {
   email: string;
   password: string;
   constructor(public auth: AuthService, private router: Router) {
+    // this.userlogin=JSON.parse(localStorage.getItem('userlogin'));
     this.alluser= this.auth.alluserRef.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.val();
@@ -28,9 +29,11 @@ export class SigninComponent implements OnInit {
   login(email, password){
     for(var i=0; i<this.users.length; i++){
       if(email == this.users[i].email && password == this.users[i].password){
-        this.auth.userlogin= this.users[i];
+        // this.auth.userlogin= this.users[i];
+        localStorage.setItem('userlogin', JSON.stringify(this.users[i]));
         console.log("Login success");
         this.router.navigate(['/dashboard']);
+        // location.reload();
         return;
       }
       else{
