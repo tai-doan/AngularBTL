@@ -31,7 +31,7 @@
                     <div class="card-footer">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 text-left">
-                                <button class="btn btn-danger" (click)="chonlai()">Chọn quiz khác</button>
+                                <!-- <button class="btn btn-danger" (click)="chonlai()">Chọn quiz khác</button> -->
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 text-right">
                                 <span class="badge badge-pill badge-primary" id="time-down"></span>
@@ -48,7 +48,7 @@
                 <div class="card-body">
                     <form>
                         <div *ngFor="let question of question" class="form-check">
-                            <input class="form-check-input" type="radio" value="{{question.Id}}" (click)="choose(question.Id)">
+                            <input class="form-check-input" name="choose" type="radio" value="{{question.Id}}" (click)="choose(question.Id)">
                             <label class="form-check-label" (click)="choose(question.Id)">
                                 {{question.Text}}
                             </label>
@@ -57,12 +57,15 @@
                 </div>
                 <div class="card-footer">
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-12 text-left">
+                        <div class="col-lg-4 col-md-4 col-sm-12 text-left">
                             <p>
                                 Marks: {{marks}}
                             </p>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 text-right">
+                        <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                            <button class="btn btn-primary" (click)="nextquiz()">Send Answer</button>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 text-right">
                             <p>
                                 Question: <span id="mark">{{i+1}}</span> / <span id="total-mark">{{count}}</span>
                             </p>
@@ -90,11 +93,24 @@
                             <button (click)="luudiem()" class="btn btn-danger">Lưu điểm</button>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 text-right">
-                            <button (click)="chonlai()" class="btn btn-danger">Làm quiz khác</button>
+                            <!-- <button (click)="chonlai()" class="btn btn-danger">Làm quiz khác</button> -->
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="tl" *ngFor="let ctl of ctl; let i=index">
+                        <p><span style="color: #425A70">Question #{{i+1}}:</span> <span style="color: #000"> {{ctl.Text}}</span></p>
+                        <p><span style="color: #425A70">Your Answers: </span> <span style="color: #000">{{ctl.YourChoose[0].Text}}</span></p>
+                        <p><span style="color: #425A70">Correct Answers: </span> <span style="color: #000">{{ctl.Correct[0].Text}}</span></p>
+                        <hr style="border:dotted 1px #5f97c9;">
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

@@ -22,8 +22,10 @@ export class QuizComponent implements OnInit {
   marks= 0; // Gán điểm
   count; // Đếm tất cả câu hỏi trong subject
   result= false;
+  IDc=-1;
   hiddenStartquiz= true; // Ẩn hiện nút Start Quiz và Form trả lời
   userlogin: any;
+  ctl= [];
 
   constructor(private router: Router ,private db: AngularFireDatabase, public itemService: ItemService, public auth: AuthService) {
 	this.userlogin= JSON.parse(localStorage.getItem('userlogin'));
@@ -72,19 +74,26 @@ export class QuizComponent implements OnInit {
 	this.timefortake(5, 30);
   }
   choose(id){
-	if(id!=null){
-		if(id== this.AnswerId){
+	this.IDc=id;
+  }
+  nextquiz(){
+	if(this.IDc!=-1){
+		if(this.IDc== this.AnswerId){
 			this.marks= this.marks + this.quizs[this.i].Marks; // Cộng điểm
+			
 		}
+		this.ctl.push({'Text': this.quizs[this.i].Text ,'YourChoose': this.quizs[this.i].Answers.filter(p => p.Id===this.IDc), 'Correct': this.quizs[this.i].Answers.filter(p => p.Id===this.AnswerId)}); //gán mảng chứa câu trả lời đúng và câu trả lời đã chọn
+		// console.log(this.ctl);
 		++this.i; // Tăng câu hỏi lên
 		if(this.i >= this.count){
 			this.result= true;
 		}else{
 			this.quizload(); // Gọi hàm
-			id=null; // Gán id câu trả lời về rỗng
+			this.IDc=-1; // Gán id câu trả lời về âm
 		}
+	}else{
+		alert("Bạn chưa chọn câu trả lời!!!");
 	}
-	
   }
   quizload(){
 	this.question= this.quizs[this.i].Answers; // Trả về mảng chứa tất cả các câu trả lời của câu hỏi
